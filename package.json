@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "npx prettier --write . && tsx watch src/server.ts",
     "build": "tsup src --out-dir build",
     "prod": "node build/server.js"
   },
@@ -12,12 +12,19 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@types/node": "^22.7.9",
-    "tsup": "^8.3.0",
-    "tsx": "^4.19.1",
-    "typescript": "^5.6.3"
+    "@eslint/js": "9.13.0",
+    "@types/node": "22.7.9",
+    "eslint": "9.13.0",
+    "globals": "15.11.0",
+    "prettier": "3.3.3",
+    "tsup": "8.3.0",
+    "tsx": "4.19.1",
+    "typescript": "5.6.3",
+    "typescript-eslint": "8.11.0"
   },
   "dependencies": {
-    "fastify": "^5.0.0"
+    "dotenv": "16.4.5",
+    "fastify": "5.0.0",
+    "zod": "3.23.8"
   }
 }
