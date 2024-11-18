@@ -9,3 +9,8 @@ services:
       - POSTGRESQL_USERNAME=docker
       - POSTGRESQL_PASSWORD=docker
       - POSTGRESQL_DATABASE=find-a-friend
+    volumes:
+      - pg_data:/bitnami/postgresql
+
+volumes:
+  pg_data:
