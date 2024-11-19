@@ -30,12 +30,16 @@
 
 ### Rodar banco de dados
 
-Inicializar container
-docker-compose up -d
+##### Inicializar container
 
-Criar e executar migration
-npx prisma migrate dev (compara com o banco, cria as migrations pendentes e roda as migrations)
-npx prisma migrate deploy (somente executa as migratuions)
+`docker-compose up -d`
 
-Visualizar banco (interface Prisma)
-npx prisma studio
+##### Criar e executar migration
+
+`npx prisma migrate dev` (compara com o banco, cria as migrations pendentes e roda as migrations)
+
+`npx prisma migrate deploy` (somente executa as migratuions)
+
+##### Visualizar banco (interface Prisma)
+
+`npx prisma studio`
