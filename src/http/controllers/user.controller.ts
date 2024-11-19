@@ -2,6 +2,7 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 import { z } from 'zod';
 import { RegisterUserService } from '@/services/user.service';
 import { PrismaUserRepository } from '@/repositories/prisma/prisma-user-repository';
+import { EmailAlreadyExistsError } from '@/services/errors/email-already-exists-error';
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
@@ -24,6 +25,10 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
     return reply.status(201).send();
   } catch (error) {
-    return reply.status(409).send();
+    if (error instanceof EmailAlreadyExistsError) {
+      return reply.status(409).send( { message: error.message });
+    }
+
+    throw error
   }
 }
