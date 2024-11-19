@@ -24,6 +24,8 @@
 
 - Docker
 
+- Vitest ( Testes automatizados )
+
 ## Execução da API
 
 ### Rodar banco de dados
