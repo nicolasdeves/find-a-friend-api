@@ -2,6 +2,7 @@
   "name": "find-a-friend-api",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "npx prettier --write . && tsx watch src/server.ts",
     "build": "tsup src --out-dir build",

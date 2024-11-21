@@ -20,10 +20,12 @@ export class RegisterUserService {
       throw new EmailAlreadyExistsError();
     }
 
-    await this.userRepository.create({
+    const user = await this.userRepository.create({
       name,
       email,
       password_hash,
     });
+
+    return { user }
   }
 }
