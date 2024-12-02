@@ -12,7 +12,7 @@ export class RegisterUserService {
   constructor(private userRepository: UserRepository) {}
 
   async handle({ name, email, password }: RegisterUserRequest) {
-    const password_hash = await hash(password, 1);
+    const password_hash = await hash(password, 6);
 
     const userWithSameEmail = await this.userRepository.findByEmail(email);
 
