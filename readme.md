@@ -26,9 +26,17 @@
 
 - Vitest ( Testes automatizados )
 
-## Execução da API
+## API
 
-### Rodar banco de dados
+### Execução
+
+`npm run dev`
+
+`npm run build`
+
+`npm run prod`
+
+### Banco de dados
 
 ##### Inicializar container
 
@@ -43,3 +51,14 @@
 ##### Visualizar banco (interface Prisma)
 
 `npx prisma studio`
+
+### Rodar testes
+
+`npm run test`
+
+`npm run test:watch`
+
+`npm run test:coverage`
+
+`npm run test:ui`
+

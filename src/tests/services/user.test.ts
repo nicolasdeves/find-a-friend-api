@@ -12,7 +12,7 @@ describe('User service', () => {
     userRepository = new InMemoryUserRepository();
     registerUserService = new RegisterUserService(userRepository);
   });
-  
+
   it('sould be able to register', async () => {
     await expect(
       registerUserService.handle({
