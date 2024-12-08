@@ -6,7 +6,10 @@ import { EmailAlreadyExistsError } from '@/services/errors/email-already-exists-
 import { AuthenticateService } from '@/services/authenticate.service';
 import { InvalidCredentialsError } from '@/services/errors/invalid-credentials-error';
 
-export async function authenticate(request: FastifyRequest, reply: FastifyReply) {
+export async function authenticate(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
   const registerBodySchema = z.object({
     email: z.string().email(),
     password: z.string().min(6),
@@ -26,9 +29,9 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
     return reply.status(200).send();
   } catch (error) {
     if (error instanceof InvalidCredentialsError) {
-      return reply.status(409).send( { message: error.message });
+      return reply.status(409).send({ message: error.message });
     }
 
-    throw error
+    throw error;
   }
 }

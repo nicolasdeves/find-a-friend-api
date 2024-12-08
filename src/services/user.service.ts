@@ -26,6 +26,6 @@ export class RegisterUserService {
       password_hash,
     });
 
-    return { user }
+    return { user };
   }
 }
