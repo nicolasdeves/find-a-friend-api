@@ -24,14 +24,12 @@ export class AuthenticateService {
 
     const user = await this.userRepository.findByEmail(email);
 
-    console.log('user', user);
     if (!user) {
       throw new InvalidCredentialsError();
     }
 
     const doesPasswordMatches = await compare(password, user.password_hash);
 
-    console.log('doesPasswordMatches', doesPasswordMatches);
 
     if (!doesPasswordMatches) {
       throw new InvalidCredentialsError();
