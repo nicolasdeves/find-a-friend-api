@@ -1,9 +1,6 @@
 import { InMemoryPetRepository } from '@/repositories/in-memory/in-memory-pet-repository';
-import { InMemoryUserRepository } from '@/repositories/in-memory/in-memory-user-repository';
-import { EmailAlreadyExistsError } from '@/use-cases/errors/email-already-exists-error';
 import { RegisterPetUseCase } from '@/use-cases/register-pet';
-import { RegisterUserUseCase } from '@/use-cases/register-user';
-import { compare } from 'bcryptjs';
+import exp from 'constants';
 import { expect, describe, it, beforeEach } from 'vitest';
 
 let petRepository: InMemoryPetRepository;
@@ -16,31 +13,13 @@ describe('Pet use case', () => {
   });
 
   it('should be able to register a pet', async () => {
-    await expect(
-      registerPet.handle({
+      const { pet } = await registerPet.handle({
         name: 'Bob',
         age: 5,
         org_id: 1
-      }),
-    ).resolves.not.toThrow();
+      })
+      expect(pet).toEqual(
+        expect.objectContaining({ name: 'Bob' })
+      )
   });
-
-
-  // it('sould not able to register with same email twice', async () => {
-  //   const email = 'fulano@email.com';
-
-  //   await registerUser.handle({
-  //     name: 'Fulano',
-  //     email,
-  //     password: '123456',
-  //   });
-
-  //   await expect(() =>
-  //     registerUser.handle({
-  //       name: 'Ciclano',
-  //       email,
-  //       password: '654321',
-  //     }),
-  //   ).rejects.toBeInstanceOf(EmailAlreadyExistsError);
-  // });
 });
