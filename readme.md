@@ -20,6 +20,8 @@
 
 ### Tecnologias utilizadas:
 
+- Typescript
+
 - Prisma
 
 - Docker
