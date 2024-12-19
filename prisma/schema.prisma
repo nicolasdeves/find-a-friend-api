@@ -18,5 +18,37 @@ model User {
   name          String
   email         String @unique
   password_hash String
-  
+
+  orgs Org[]
+}
+
+model City {
+  id Int @id @default(autoincrement())
+  name String
+
+  orgs Org[]
+}
+
+model Org {
+  id   Int    @id @default(autoincrement())
+  name String
+  email String
+  phone String
+
+  city_id Int
+  city City @relation(fields: [city_id], references: [id])
+
+  user_id Int
+  user    User @relation(fields: [user_id], references: [id])
+
+  pets Pet[]
+}
+
+model Pet {
+  id   Int    @id @default(autoincrement())
+  name String
+  age  Int
+
+  org_id Int
+  org Org @relation(fields: [org_id], references: [id])
 }
