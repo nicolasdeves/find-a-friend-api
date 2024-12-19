@@ -1,18 +1,16 @@
 import { InMemoryUserRepository } from '@/repositories/in-memory/in-memory-user-repository';
-import { AuthenticateService } from '@/services/authenticate.service';
-import { EmailAlreadyExistsError } from '@/services/errors/email-already-exists-error';
-import { InvalidCredentialsError } from '@/services/errors/invalid-credentials-error';
-import { RegisterUserService } from '@/services/user.service';
+import { AuthenticateUseCase } from '@/use-cases/authenticate';
+import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error';
 import { hash, compare } from 'bcryptjs';
 import { expect, describe, it, beforeEach } from 'vitest';
 
 let userRepository: InMemoryUserRepository;
-let authenticateService: AuthenticateService;
+let authenticate: AuthenticateUseCase;
 
 describe('Authenticate service', () => {
   beforeEach(() => {
     userRepository = new InMemoryUserRepository();
-    authenticateService = new AuthenticateService(userRepository);
+    authenticate = new AuthenticateUseCase(userRepository);
   });
 
   it('should be able to authenticate', async () => {
@@ -22,7 +20,7 @@ describe('Authenticate service', () => {
       password_hash: await hash('123456', 6),
     });
 
-    const user = authenticateService.handle({
+    const user = authenticate.handle({
       email: 'ciclaninho@gmail.com',
       password: '123456',
     });
@@ -31,7 +29,7 @@ describe('Authenticate service', () => {
   });
 
   it('should not be able to authenticate with non-existent email', async () => {
-    const user = authenticateService.handle({
+    const user = authenticate.handle({
       email: 'ciclaninho@gmail.com',
       password: '1234561',
     });
@@ -46,7 +44,7 @@ describe('Authenticate service', () => {
       password_hash: await hash('123456', 6),
     });
 
-    const user = authenticateService.handle({
+    const user = authenticate.handle({
       email: 'ciclaninho@gmail.com',
       password: '654321',
     });
