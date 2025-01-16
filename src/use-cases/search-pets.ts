@@ -15,7 +15,9 @@ interface SearchPetsUseCaseResponse {
 export class SearchPetsUseCase {
   constructor(private petRepository: PetRepository) {}
 
-  async handle(params: SearchPetsUseCaseRequest): Promise<SearchPetsUseCaseResponse> {
+  async handle(
+    params: SearchPetsUseCaseRequest,
+  ): Promise<SearchPetsUseCaseResponse> {
     const pets = await this.petRepository.searchPets(params);
 
     return { pets };

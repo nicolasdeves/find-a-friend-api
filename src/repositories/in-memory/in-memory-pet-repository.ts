@@ -23,19 +23,21 @@ export class InMemoryPetRepository implements PetRepository {
   }
 
   async searchPets(params: FindAllParams): Promise<Pet[]> {
-    const orgsByCity = this.orgRepository.items.filter((org) => org.city_id === params.city_id);
+    const orgsByCity = this.orgRepository.items.filter(
+      (org) => org.city_id === params.city_id,
+    );
 
     let pets = this.items.filter((pet) =>
-      orgsByCity.find((org) => org.id === pet.org_id)
-    )
+      orgsByCity.find((org) => org.id === pet.org_id),
+    );
 
     if (params.age) {
-      console.log('params.age', params.age)
-      pets = pets.filter((pet) => pet.age === params.age)
+      console.log('params.age', params.age);
+      pets = pets.filter((pet) => pet.age === params.age);
     }
 
     if (params.org_id) {
-      pets = pets.filter((pet) => pet.org_id === params.org_id)
+      pets = pets.filter((pet) => pet.org_id === params.org_id);
     }
 
     return pets;

@@ -28,6 +28,8 @@
 
 - Vitest ( Testes automatizados )
 
+- JWT
+
 ## API
 
 ### Execução
