@@ -49,8 +49,6 @@ describe('Pet use case', () => {
       city_id: 1,
     });
 
-    console.log('teste do serach', pets);
-
     expect(pets[0]).toEqual(expect.objectContaining({ name: 'Bob' }));
   });
 

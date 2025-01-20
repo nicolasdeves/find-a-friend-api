@@ -32,7 +32,6 @@ export class InMemoryPetRepository implements PetRepository {
     );
 
     if (params.age) {
-      console.log('params.age', params.age);
       pets = pets.filter((pet) => pet.age === params.age);
     }
 
