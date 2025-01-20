@@ -7,10 +7,12 @@
     "dev": "npx prettier --write . && tsx watch src/server.ts",
     "build": "tsup src --out-dir build",
     "prod": "node build/server.js",
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "test": "vitest run --dir src/tests/use-cases",
+    "test:watch": "vitest --dir src/tests/use-cases",
     "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "pretest:e2e": "cd prisma/vitest-environment-prisma && npm link && cd ../../ && npm link vitest-environment-prisma",
+    "test:e2e": "vitest run --dir src/tests/end-to-end"
   },
   "keywords": [],
   "author": "",
