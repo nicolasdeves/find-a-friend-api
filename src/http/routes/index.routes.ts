@@ -8,5 +8,5 @@ export async function indexRoutes(app: FastifyInstance) {
   app.post('/user', register);
   app.post('/sessions', authenticate);
 
-  app.get('/profile',{ onRequest: [verifyJwt]}, profile)
+  app.get('/profile', { onRequest: [verifyJwt] }, profile);
 }

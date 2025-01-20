@@ -1,5 +1,5 @@
-import { UserRepository } from "@/repositories/user-repository";
-import { User } from "@prisma/client";
+import { UserRepository } from '@/repositories/user-repository';
+import { User } from '@prisma/client';
 
 interface GetUserUseCaseRequest {
   id: number;
@@ -12,9 +12,7 @@ interface GetUserUseCaseResponse {
 export class GetUserUseCase {
   constructor(private userRepository: UserRepository) {}
 
-  async handle({
-    id
-  }: GetUserUseCaseRequest): Promise<GetUserUseCaseResponse> {
+  async handle({ id }: GetUserUseCaseRequest): Promise<GetUserUseCaseResponse> {
     const user = await this.userRepository.findById(id);
 
     return { user };
