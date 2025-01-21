@@ -50,7 +50,7 @@
 
 `npx prisma migrate dev` (compara com o banco, cria as migrations pendentes e roda as migrations)
 
-`npx prisma migrate deploy` (somente executa as migratuions)
+`npx prisma migrate deploy` (somente executa todas as migrations)
 
 ##### Visualizar banco (interface Prisma)
 
