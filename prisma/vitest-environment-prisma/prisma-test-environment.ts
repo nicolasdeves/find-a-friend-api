@@ -1,17 +1,33 @@
-import { Environment } from 'vitest'
+import 'dotenv/config';
+import { randomUUID } from 'crypto';
+import { Environment } from 'vitest';
+import { execSync } from 'child_process';
+import { prisma } from '@/lib/prisma';
+
 export default <Environment>{
   name: 'prisma',
   transformMode: 'web',
-  async setup(global, options) { // this function will be executed before the tests
-    console.log('Setup')
-    return {
-      async teardown() { // this function will be executed after the tests
-        console.log('Teardown')
-      },
-    }
-  },
-}
+  async setup(global, options) {
+    // this function will be executed before the tests
 
+    const schema = randomUUID();
+    process.env.DATABASE_URL = `postgresql://docker:docker@localhost:5432/find-a-friend?schema=${schema}`;
+
+    execSync('npx prisma migrate deploy');
+
+    return {
+      async teardown() {
+        // this function will be executed after the tests
+
+        await prisma.$executeRawUnsafe(
+          `DROP SCHEMA IF EXISTS "${schema}" CASCADE`,
+        );
+
+        await prisma.$disconnect();
+      },
+    };
+  },
+};
 
 /*
 
