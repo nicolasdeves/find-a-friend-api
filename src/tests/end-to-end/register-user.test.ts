@@ -1,0 +1,23 @@
+import { app } from '@/app';
+import { afterAll, beforeAll, describe, expect, it, test } from 'vitest';
+import request from 'supertest';
+
+describe('register user e2e', () => {
+  beforeAll(async () => {
+    app.ready();
+  });
+
+  afterAll(async () => {
+    app.close();
+  });
+
+  it('should be able to register a user', async () => {
+    const response = await request(app.server).post('/user').send({
+      name: 'John Doe',
+      email: 'johndoe@email.com',
+      password: '123456',
+    });
+
+    expect(response.statusCode).toEqual(201);
+  });
+});
