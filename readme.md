@@ -30,6 +30,8 @@
 
 - JWT
 
+- CI
+
 ## API
 
 ### Execução
