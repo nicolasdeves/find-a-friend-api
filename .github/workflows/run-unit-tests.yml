@@ -3,17 +3,17 @@ name: Run unit tests
 on: [push]
 
 jobs:
-    run-unit-tests:
-        name: Run unit tests
-        runs-on: ubuntu-latest
+  run-unit-tests:
+    name: Run unit tests
+    runs-on: ubuntu-latest
 
-        steps:
-            - uses: actions/checkout@v3     # Checkout the repository
-            - uses: actions/setup-node@v3   # Set up Node.js
-              with:
-                  node-version: '20'
-                  cache: 'npm'
+    steps:
+      - uses: actions/checkout@v3 # Checkout the repository
+      - uses: actions/setup-node@v3 # Set up Node.js
+        with:
+          node-version: '20'
+          cache: 'npm'
 
-            - run: npm ci             # Install dependencies
+      - run: npm ci # Install dependencies
 
-            - run: npm run test           # Run unit tests
+      - run: npm run test # Run unit tests
