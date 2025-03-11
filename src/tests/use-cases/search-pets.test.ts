@@ -143,24 +143,26 @@ describe('Pet use case', () => {
     expect(pets.length).toBe(1);
   });
 
-  it ('should be able to search a pet by id', async () => {
-    const id = randomInt(100)
-    
+  it('should be able to search a pet by id', async () => {
+    const id = randomInt(100);
+
     await petRepository.create({
       id,
       name: 'Bob',
       age: 7,
-      org_id: 1
-    })
+      org_id: 1,
+    });
 
-    const pet = await petRepository.getById(id)
+    const pet = await petRepository.getById(id);
 
-    expect(pet.id).toEqual(id)
-    expect(pet).toEqual(expect.objectContaining({
-      id,
-      name: 'Bob',
-      age: 7,
-      org_id: 1
-    }))
-  })
+    expect(pet.id).toEqual(id);
+    expect(pet).toEqual(
+      expect.objectContaining({
+        id,
+        name: 'Bob',
+        age: 7,
+        org_id: 1,
+      }),
+    );
+  });
 });

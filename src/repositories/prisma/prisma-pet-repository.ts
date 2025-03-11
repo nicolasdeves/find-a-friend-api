@@ -15,19 +15,19 @@ export class PrismaPetRepository implements PetRepository {
       where: {
         org: { city_id: params.city_id },
         org_id: params.org_id || undefined,
-        age: params.age || undefined
-      }
-    })
+        age: params.age || undefined,
+      },
+    });
 
     return pets;
   }
 
-  async getById(id: number){
+  async getById(id: number) {
     const pet = await prisma.pet.findUnique({
       where: {
-        id
-      }
-    })
+        id,
+      },
+    });
 
     return pet;
   }
